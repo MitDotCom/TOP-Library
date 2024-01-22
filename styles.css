@@ -36,11 +36,10 @@ header {
 
 .logo img {
     background-color: var(--font-color);
-    border-radius: 2.5rem;
+    border-radius: 3rem;
     margin: 0.5rem;
     padding: 0.5rem;
     width: 4rem;
-    object-fit: cover;
 }
 
 .logo img:hover {
