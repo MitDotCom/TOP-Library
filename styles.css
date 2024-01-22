@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    background-color: #d5f4e6;
+}
+
+header {
+    background-color: #80ced6;
+    height: clamp(100px,15vh,20vh);
+}
+
+header img {
+    width: 4rem;
+}
