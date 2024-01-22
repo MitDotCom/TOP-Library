@@ -1,4 +1,6 @@
 :root {
+    --font-color: #fefbd8;
+    --font-hover: #d6d2a4;
     --body-background: #d5f4e6;
     --header-background: #80ced6;
     --box-background: #618685;
@@ -8,15 +10,21 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    color: var(--font-hover);
+}
+
 body {
+    display: grid;
+    grid-template-rows: minmax(100px,15vh) minmax(600px,85vh) 30px;
     margin: 0;
     background-color: var(--body-background);
 }
 
 header {
-    background-color: var(--header-background);
-    height: clamp(100px,15vh,20vh);
     display: grid;
+    grid-row-start: 1;
+    background-color: var(--header-background);
     grid-template-columns: 2fr repeat(3,1fr);
 }
 
@@ -27,7 +35,7 @@ header {
 }
 
 .logo img {
-    background-color: var(--box-background);
+    background-color: var(--font-color);
     border-radius: 2.5rem;
     margin: 0.5rem;
     padding: 0.5rem;
@@ -35,25 +43,57 @@ header {
     object-fit: cover;
 }
 
+.logo img:hover {
+    background-color: var(--font-hover);
+}
+
 .logo h1 {
     margin-top: -0.5rem;
-    color: white;
-    text-shadow: 0 0 8px #618685;
+    color: var(--font-color);
+    text-shadow: 0 0 8px var(--box-background);
+}
+
+.logo h1:hover {
+    color: var(--font-hover);
 }
 
 .add,.remove,.search {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--font-color);
     font-size: 1.5rem;
     text-align: center;
     width: clamp(4rem,8rem,10rem);
     height: clamp(1rem,3rem,4rem);
     padding: 0.5rem;
-    border: 2px solid white;
+    border: 2px solid var(--font-color);
     border-radius: 1rem;
     background-color: var(--box-background);
     align-self: center;
     justify-self: center;
+}
+
+.add:hover,.remove:hover,.search:hover {
+    border-color: var(--font-hover);
+}
+
+footer {
+    background-color: var(--header-background);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    grid-row: 3 / 4;
+}
+
+footer span a {
+    color: var(--font-color);
+}
+
+footer span a:hover {
+    color: var(--font-hover);
+}
+
+footer a, footer p {
+    text-shadow: 0 0 5px var(--box-background);
 }
