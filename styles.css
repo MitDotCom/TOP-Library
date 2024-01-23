@@ -21,6 +21,8 @@ body {
     background-color: var(--body-background);
 }
 
+/* ---------------------------------------- */
+
 header {
     display: grid;
     grid-row-start: 1;
@@ -76,6 +78,29 @@ header {
 .add:hover,.remove:hover,.search:hover {
     border-color: var(--font-hover);
 }
+
+/* ---------------------------------------- */
+
+#catalog {
+    display: grid;
+    grid-template: repeat(auto-fill,minmax(200px,300px)) / repeat(auto-fill,minmax(100px,200px));
+    gap: 1rem;
+    margin: 2rem;
+}
+
+#catalog div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--font-color);
+    background-color: var(--box-background);
+    border: 5px solid var(--header-background);
+    border-radius: 1rem;
+    text-align: center;
+}
+
+/* ---------------------------------------- */
 
 footer {
     background-color: var(--header-background);
