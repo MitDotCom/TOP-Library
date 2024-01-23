@@ -100,6 +100,14 @@ header {
     text-align: center;
 }
 
+#catalog h2,#catalog h3 {
+    -webkit-text-stroke: 0.5px black;
+}
+
+#catalog div:hover {
+    transform: scale(1.1);
+}
+
 /* ---------------------------------------- */
 
 footer {
