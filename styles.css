@@ -84,7 +84,7 @@ header {
 
 #catalog {
     display: grid;
-    grid-template: repeat(auto-fill,minmax(200px,300px)) / repeat(auto-fill,minmax(100px,200px));
+    grid-template: repeat(auto-fill,minmax(120px,40vh)) / repeat(auto-fill,minmax(60px,15vw));
     gap: 1rem;
     margin: 2rem;
 }
@@ -102,6 +102,7 @@ header {
 }
 
 #catalog h2,#catalog h3 {
+    margin: 0.5rem;
     font-size: clamp(16px,3.5vh,32px);
     -webkit-text-stroke: 0.1vh black;
 }
