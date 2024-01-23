@@ -41,7 +41,7 @@ header {
     border-radius: 3rem;
     margin: 0.5rem;
     padding: 0.5rem;
-    width: 4rem;
+    width: calc(5vh + 20px);
 }
 
 .logo img:hover {
@@ -49,6 +49,7 @@ header {
 }
 
 .logo h1 {
+    font-size: calc(3vh + 12px);
     margin-top: -0.5rem;
     color: var(--font-color);
     text-shadow: 0 0 8px var(--box-background);
@@ -63,10 +64,10 @@ header {
     justify-content: center;
     align-items: center;
     color: var(--font-color);
-    font-size: 1.5rem;
+    font-size: calc(2vh + 10px);
     text-align: center;
-    width: clamp(4rem,8rem,10rem);
-    height: clamp(1rem,3rem,4rem);
+    width: 10vw;
+    height: 6vh;
     padding: 0.5rem;
     border: 2px solid var(--font-color);
     border-radius: 1rem;
@@ -95,13 +96,14 @@ header {
     align-items: center;
     color: var(--font-color);
     background-color: var(--box-background);
-    border: 5px solid var(--header-background);
+    border: 5px solid var(--box-background);
     border-radius: 1rem;
     text-align: center;
 }
 
 #catalog h2,#catalog h3 {
-    -webkit-text-stroke: 0.5px black;
+    font-size: clamp(16px,3.5vh,32px);
+    -webkit-text-stroke: 0.1vh black;
 }
 
 #catalog div:hover {
