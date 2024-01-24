@@ -66,8 +66,8 @@ header {
     color: var(--font-color);
     font-size: calc(2vh + 10px);
     text-align: center;
-    width: 10vw;
-    height: 6vh;
+    width: 12vw;
+    height: 8vh;
     padding: 0.5rem;
     border: 2px solid var(--font-color);
     border-radius: 1rem;

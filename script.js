@@ -42,15 +42,31 @@ function displayBooks() {
 };
 
 function addBook() {
+    let addDialog = document.createElement("dialog");
+    addDialog.classList.add("add");
+    addDialog.textContent = "My name is Lorem"; 
+    let closeButton = document.createElement("button");
+    closeButton.textContent = "X";
+    closeButton.classList.add("close");
+    addDialog.appendChild(closeButton);
+    document.body.appendChild(addDialog);
 
+    addDialog.showModal();
+    closeButton.addEventListener('click', () => {
+        addDialog.close();
+    });
 };
 
 function removeBook() {
-
+    console.log("clicked remove");
 };
 
 function searchLibrary() {
-
+    console.log("clicked search");
 };
 
 displayBooks();
+
+addBookBtn.addEventListener("click",addBook);
+removeBookBtn.addEventListener("click",removeBook);
+searchBtn.addEventListener("click",searchLibrary);
