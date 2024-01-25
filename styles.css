@@ -134,6 +134,8 @@ footer a, footer p {
     text-shadow: 0 0 5px var(--box-background);
 }
 
+/* ---------------------------------------- */
+
 #add-modal {
     display: grid;
     grid-template-rows: 1fr 5fr;
@@ -141,6 +143,11 @@ footer a, footer p {
     height: 50vh;
     background-color: var(--box-background);
     color: var(--font-color);
+}
+
+#add-modal::backdrop {
+    background: linear-gradient(45deg,#80ced6,#d5f4e6);
+    opacity: .5;
 }
 
 #add-modal button.close {
