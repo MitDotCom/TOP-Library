@@ -100,7 +100,7 @@ function addBook() {
     modalRating.setAttribute("name","rating");
     let modalRatingLabel = document.createElement("label");
     modalRatingLabel.setAttribute("for","rating");
-    modalRatingLabel.textContent = "Rating:";
+    modalRatingLabel.textContent = "Rating (0-5):";
     modalForm.appendChild(modalRatingLabel);
     modalForm.appendChild(modalRating);
 
