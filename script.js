@@ -113,8 +113,10 @@ function addBook() {
     document.body.appendChild(addDialog);
 
     addDialog.showModal();
+
     closeButton.addEventListener('click', () => {
         addDialog.close();
+        document.body.removeChild(addDialog);
     });
 };
 
