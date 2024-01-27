@@ -126,11 +126,31 @@ function addBook() {
 };
 
 function removeBook() {
+    
     console.log("clicked remove");
+    // for (book in myLibrary) {
+    //     
+    // }
+
+    displayBooks();
+
 };
 
 function searchLibrary() {
-    console.log("clicked search");
+    let searchDialog = document.createElement("dialog");
+    searchDialog.setAttribute("id","search-modal");
+    searchDialog.setAttribute("method","dialog");
+    document.body.appendChild(searchDialog);
+
+    let closeButton = document.createElement("button");
+    closeButton.textContent = "X";
+    closeButton.classList.add("close");
+    searchDialog.appendChild(closeButton);
+
+    let headSearch = document.createElement("h2");
+    headSearch.textContent = "Search";
+    searchDialog.appendChild(headSearch);
+
 };
 
 displayBooks();

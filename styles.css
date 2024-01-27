@@ -186,3 +186,11 @@ footer a, footer p {
     grid-row: 6 / 7;
     grid-column: span 2;
 }
+
+/* ---------------------------------------- */
+
+#search-dialog {
+    background-color: var(--box-background);
+    width: 50vw;
+    height: 50vh;
+}
