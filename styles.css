@@ -87,6 +87,7 @@ header {
     display: grid;
     grid-template: repeat(auto-fill,minmax(120px,40vh)) / repeat(auto-fill,minmax(60px,15vw));
     gap: 1rem;
+    padding: 1.5rem;
     margin: 2rem;
     overflow: scroll;
 }
