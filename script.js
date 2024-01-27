@@ -147,17 +147,37 @@ function searchLibrary() {
     closeButton.classList.add("close");
     searchDialog.appendChild(closeButton);
 
-    let headSearch = document.createElement("h2");
-    headSearch.textContent = "Search";
-    searchDialog.appendChild(headSearch);
+    let modalForm = document.createElement("form");
+
+    let searchHeading = document.createElement("h2");
+    searchHeading.textContent = "Search";
+    searchDialog.appendChild(searchHeading);
     catalog.appendChild(searchDialog);
 
-    closeButton.addEventListener("click",() => {
+    let searchBar = document.createElement("input");
+    searchBar.setAttribute("type","text");
+    searchBar.setAttribute("id","search");
+    searchBar.setAttribute("name","search");
+    let searchBarLabel = document.createElement("label");
+    searchBarLabel.setAttribute("for","search");
+    searchBarLabel.textContent = "Search alphabetically by title";
+    searchDialog.appendChild(searchBar);
+
+    let modalSubmit = document.createElement("button");
+    modalSubmit.setAttribute("type","submit");
+    modalSubmit.textContent = "Submit";
+    modalForm.appendChild(modalSubmit);
+
+    searchDialog.showModal();
+
+    closeButton.addEventListener('click', () => {
         searchDialog.close();
         document.body.removeChild(searchDialog);
     })
-    searchDialog.showModal();
 
+    modalSubmit.addEventListener("click",() => {
+        // ;
+    })
 };
 
 createBooks();
