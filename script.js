@@ -23,7 +23,7 @@ const aTaleOfTwoCities = new Book("A Tale of Two Cities","Charles Dickens",489,"
 
 const myLibrary = [theHobbit,aTaleOfTwoCities];
 
-function displayBooks() {
+function createBooks() {
     for (book of myLibrary) {
         let div = document.createElement("div");
         div.classList.add(book.divName);
@@ -132,7 +132,7 @@ function removeBook() {
     //     
     // }
 
-    displayBooks();
+    createBooks();
 
 };
 
@@ -150,10 +150,17 @@ function searchLibrary() {
     let headSearch = document.createElement("h2");
     headSearch.textContent = "Search";
     searchDialog.appendChild(headSearch);
+    catalog.appendChild(searchDialog);
+
+    closeButton.addEventListener("click",() => {
+        searchDialog.close();
+        document.body.removeChild(searchDialog);
+    })
+    searchDialog.showModal();
 
 };
 
-displayBooks();
+createBooks();
 
 addBookBtn.addEventListener("click",addBook);
 removeBookBtn.addEventListener("click",removeBook);
