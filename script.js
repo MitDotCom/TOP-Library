@@ -118,6 +118,11 @@ function addBook() {
         addDialog.close();
         document.body.removeChild(addDialog);
     });
+
+    modalSubmit.addEventListener("click",() => {
+        let newObjectName = modalTitle;
+        console.log(newObjectName);
+    })
 };
 
 function removeBook() {
