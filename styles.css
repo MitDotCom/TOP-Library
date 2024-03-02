@@ -79,6 +79,7 @@ header {
 
 .add:hover,.remove:hover,.search:hover {
     border-color: var(--font-hover);
+    color: var(--font-hover)
 }
 
 /* ---------------------------------------- */
