@@ -79,14 +79,14 @@ header {
 
 .add:hover,.remove:hover,.search:hover {
     border-color: var(--font-hover);
-    color: var(--font-hover);
+    color: var(--font-hover)
 }
 
 /* ---------------------------------------- */
 
 #catalog {
     display: grid;
-    grid-template: repeat(auto-fill,minmax(120px,40vh)) / repeat(auto-fill,minmax(60px,15vw));
+    grid-template: repeat(auto-fill,minmax(120px,35vh)) / repeat(auto-fill,minmax(60px,15vw));
     gap: 1rem;
     padding: 1.5rem;
     margin: 2rem;
