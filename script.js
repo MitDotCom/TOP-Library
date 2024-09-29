@@ -16,40 +16,38 @@ function Book(title,author,pages,read,rating,elementType,className,color) {
     this.rating = rating;
     this.elementType = elementType;
     this.className = className;
-    this.color = color
+    this.color = color;
 };
 
-const theHobbit = new Book("The Hobbit","J.R.R. Tolkien",366,"yes",4,"div","hobbit",makeRandomColor());
-const aTaleOfTwoCities = new Book("A Tale of Two Cities","Charles Dickens",489,"no",4,"div","twoCities",makeRandomColor());
+const myLibrary = [];
 
-const newLibrary = [];
-const myLibrary = [theHobbit,aTaleOfTwoCities];
+function showBooks() {
 
-function createBooks() {
-    for (book of newLibrary) {
+    catalog.replaceChildren();
 
-        if (!(myLibrary.includes(book))) {
-            
-            let div = document.createElement("div");
-            div.classList.add(book.className);
-            let randomColor = makeRandomColor();
-            div.style.backgroundColor = randomColor;
+    for (book of myLibrary) {
 
-            let h2 = document.createElement("h2");
-            h2.textContent = book.title;
-            div.appendChild(h2);
+        let div = document.createElement("div");
+        div.classList = book.className;
+        let randomColor = makeRandomColor();
+        div.style.backgroundColor = randomColor;
 
-            let h3 = document.createElement("h3");
-            h3.textContent = book.author;
-            div.appendChild(h3);
+        let h2 = document.createElement("h2");
+        h2.textContent = book.title;
+        div.appendChild(h2);
 
-            catalog.appendChild(div);
-        }
-        
-    };
+        let h3 = document.createElement("h3");
+        h3.textContent = book.author;
+        div.appendChild(h3);
+
+        catalog.appendChild(div);
+        console.log(book.title);
+    }
+    
 };
 
-function addBookForm() {
+
+function addBook() {
     let addDialog = document.createElement("dialog");
     addDialog.setAttribute("id","add-modal");
     addDialog.setAttribute("method","dialog");
@@ -112,7 +110,7 @@ function addBookForm() {
     modalForm.appendChild(modalRating);
 
     let modalSubmit = document.createElement("button");
-    modalSubmit.setAttribute("type","submit");
+    modalSubmit.setAttribute("type","button");
     modalSubmit.textContent = "Submit";
     modalForm.appendChild(modalSubmit);
 
@@ -126,9 +124,8 @@ function addBookForm() {
         document.body.removeChild(addDialog);
     });
 
-    modalSubmit.addEventListener("click",(event) => {
+    modalSubmit.addEventListener("click", () => {
 
-        event.preventDefault();
         
         let title = modalForm.querySelector("#title").value;
         let author = modalForm.querySelector("#author").value;
@@ -143,23 +140,26 @@ function addBookForm() {
             read,
             rating
         )
-        myLibrary.append(newBook);
-        createBooks();
+
+        myLibrary.push(newBook);
+        showBooks();
+        addDialog.close();
+        document.body.removeChild(addDialog);
+        
     });
 
-    
 };
     
 
 function removeBook() {
     
     console.log("clicked remove");
-    // for (book in myLibrary) {
+    // for (book of myLibrary) {
     //     
     // }
 
-    createBooks();
-
+    myLibrary.pop();
+    console.log(myLibrary);
 };
 
 function searchLibrary() {
@@ -178,7 +178,7 @@ function searchLibrary() {
     let searchHeading = document.createElement("h2");
     searchHeading.textContent = "Search";
     searchDialog.appendChild(searchHeading);
-    catalog.appendChild(searchDialog);
+    document.body.appendChild(searchDialog);
 
     let searchBar = document.createElement("input");
     searchBar.setAttribute("type","text");
@@ -206,8 +206,8 @@ function searchLibrary() {
     })
 };
 
-createBooks();
+window.onload = showBooks();
 
-addBookBtn.addEventListener("click",addBookForm);
+addBookBtn.addEventListener("click",addBook);
 removeBookBtn.addEventListener("click",removeBook);
 searchBtn.addEventListener("click",searchLibrary);
