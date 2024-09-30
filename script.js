@@ -5,6 +5,8 @@ const searchBtn = document.querySelector(".search");
 
 const catalog = document.getElementById("catalog");
 
+const myLibrary = [];
+
 function makeRandomColor() {
     let randomColor = Math.floor(Math.random()*16777215).toString(16);
     return "#" + randomColor;
@@ -21,7 +23,6 @@ function Book(title,author,pages,read,rating,elementType,className,color) {
     this.color = color;
 };
 
-const myLibrary = [];
 
 function showBooks() {
 
@@ -48,6 +49,12 @@ function showBooks() {
 
 
 function addBook() {
+
+    let cataloguedBooks = catalog.querySelectorAll("div");
+    console.log("clicked 'add book'");
+    console.log("cataloguedBooks: ",cataloguedBooks);
+    console.log("myLibrary: ",myLibrary);
+
     let addDialog = document.createElement("dialog");
     addDialog.setAttribute("id","add-modal");
     addDialog.setAttribute("method","dialog");
@@ -157,21 +164,31 @@ function addBook() {
 };
 
 function clickBook() {
-
+    //
 }
 
 function removeBook() {
 
     let cataloguedBooks = catalog.querySelectorAll("div");
+    console.log("clicked 'remove book'");
+    console.log("cataloguedBooks: ",cataloguedBooks);
+    console.log("myLibrary: ",myLibrary);
 
-    for (let i = 0; i < cataloguedBooks.length; i++) {
+    if (cataloguedBooks.length == 0) {
+        
+    }
+
+    else {
+        // This creates and appends the checkboxes on to the book divs
+        
+        for (let i = 0; i < cataloguedBooks.length; i++) {
 
         let selectBox = document.createElement("input");
         selectBox.setAttribute("type","checkbox");
         selectBox.setAttribute("id","select");
         cataloguedBooks[i].appendChild(selectBox);
     }
-
+    
     let removeDialog = document.createElement("dialog");
     removeDialog.setAttribute("id","remove-modal");
     removeDialog.setAttribute("method","dialog");
@@ -189,16 +206,44 @@ function removeBook() {
 
     header.appendChild(removeDialog);
 
-    closeButton.addEventListener('click', () => {
+    // This removes the checkbox element from the book divs 
+    closeButton.addEventListener("click", () => {
 
+        
         for (let i = 0; i < cataloguedBooks.length; i++) {
+
             let bookClose = cataloguedBooks[i].querySelector("input");
             cataloguedBooks[i].removeChild(bookClose);
+
         }
+
         removeDialog.close();
         header.removeChild(removeDialog);
-    })
+    });
 
+    // This removes divs based on checkboxs checked
+    modalSubmit.addEventListener("click", () => {
+
+        for (let i = 0; i < cataloguedBooks.length; i++) {
+
+            let bookClose = cataloguedBooks[i].querySelector("input");
+            
+            if (bookClose.checked == true) {
+                
+                catalog.removeChild(cataloguedBooks[i]);
+            }
+
+            myLibrary.splice(i,1);
+        };
+
+        
+        removeDialog.close();
+        header.removeChild(removeDialog);
+    });
+
+    }
+
+    
 };
 
 function searchLibrary() {
