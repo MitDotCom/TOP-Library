@@ -1,6 +1,8 @@
+const header = document.querySelector("header")
 const addBookBtn = document.querySelector(".add");
 const removeBookBtn = document.querySelector(".remove");
 const searchBtn = document.querySelector(".search");
+
 const catalog = document.getElementById("catalog");
 
 function makeRandomColor() {
@@ -29,8 +31,7 @@ function showBooks() {
 
         let div = document.createElement("div");
         div.classList = book.className;
-        let randomColor = makeRandomColor();
-        div.style.backgroundColor = randomColor;
+        div.style.backgroundColor = book.color;
 
         let h2 = document.createElement("h2");
         h2.textContent = book.title;
@@ -41,7 +42,6 @@ function showBooks() {
         div.appendChild(h3);
 
         catalog.appendChild(div);
-        console.log(book.title);
     }
     
 };
@@ -132,14 +132,20 @@ function addBook() {
         let pages = modalForm.querySelector("#pages").value;
         let read = modalForm.querySelector("#read").value;
         let rating = modalForm.querySelector("#rating").value;
+        let elementType = "div";
+        let className = "book";
+        let color = makeRandomColor();
 
         let newBook = new Book(
             title,
             author,
             pages,
             read,
-            rating
-        )
+            rating,
+            elementType,
+            className,
+            color
+        );
 
         myLibrary.push(newBook);
         showBooks();
@@ -149,17 +155,50 @@ function addBook() {
     });
 
 };
-    
+
+function clickBook() {
+
+}
 
 function removeBook() {
-    
-    console.log("clicked remove");
-    // for (book of myLibrary) {
-    //     
-    // }
 
-    myLibrary.pop();
-    console.log(myLibrary);
+    let cataloguedBooks = catalog.querySelectorAll("div");
+
+    for (let i = 0; i < cataloguedBooks.length; i++) {
+
+        let selectBox = document.createElement("input");
+        selectBox.setAttribute("type","checkbox");
+        selectBox.setAttribute("id","select");
+        cataloguedBooks[i].appendChild(selectBox);
+    }
+
+    let removeDialog = document.createElement("dialog");
+    removeDialog.setAttribute("id","remove-modal");
+    removeDialog.setAttribute("method","dialog");
+
+    let closeButton = document.createElement("button");
+    closeButton.textContent = "X";
+    closeButton.classList.add("close");
+    removeDialog.appendChild(closeButton);
+
+    let modalSubmit = document.createElement("button");
+    modalSubmit.setAttribute("type","button");
+    modalSubmit.setAttribute("id","submit");
+    modalSubmit.textContent = "Delete";
+    removeDialog.appendChild(modalSubmit);
+
+    header.appendChild(removeDialog);
+
+    closeButton.addEventListener('click', () => {
+
+        for (let i = 0; i < cataloguedBooks.length; i++) {
+            let bookClose = cataloguedBooks[i].querySelector("input");
+            cataloguedBooks[i].removeChild(bookClose);
+        }
+        removeDialog.close();
+        header.removeChild(removeDialog);
+    })
+
 };
 
 function searchLibrary() {
@@ -205,8 +244,6 @@ function searchLibrary() {
         // ;
     })
 };
-
-window.onload = showBooks();
 
 addBookBtn.addEventListener("click",addBook);
 removeBookBtn.addEventListener("click",removeBook);
