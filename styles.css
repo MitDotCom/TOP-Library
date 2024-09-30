@@ -94,6 +94,7 @@ header {
 }
 
 #catalog div {
+    text-align: center;
     max-width: 15vw;
     display: grid;
     grid-template: repeat(5, 1fr) / 1fr 5fr 1fr;
