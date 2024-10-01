@@ -50,7 +50,15 @@ function showBooks() {
 
 function addBook() {
 
-    let cataloguedBooks = catalog.querySelectorAll("div");
+    let headerRemoveDialog = header.querySelector("dialog");
+
+    if (headerRemoveDialog) {
+        // Do nothing
+    }
+
+    else {
+        
+        let cataloguedBooks = catalog.querySelectorAll("div");
     console.log("clicked 'add book'");
     console.log("cataloguedBooks: ",cataloguedBooks);
     console.log("myLibrary: ",myLibrary);
@@ -160,8 +168,7 @@ function addBook() {
         document.body.removeChild(addDialog);
         
     });
-
-};
+}};
 
 function clickBook() {
     //
@@ -173,9 +180,10 @@ function removeBook() {
     console.log("clicked 'remove book'");
     console.log("cataloguedBooks: ",cataloguedBooks);
     console.log("myLibrary: ",myLibrary);
+    console.log("catalogued books length: ",cataloguedBooks.length);
 
     if (cataloguedBooks.length == 0) {
-        
+        // Do nothing
     }
 
     else {
@@ -230,21 +238,22 @@ function removeBook() {
             
             if (bookClose.checked == true) {
                 
+                cataloguedBooks[i].removeChild(bookClose);
                 catalog.removeChild(cataloguedBooks[i]);
+                myLibrary.splice(i,1);
+                
+            }
+            else {
+
+                cataloguedBooks[i].removeChild(bookClose);
             }
 
-            myLibrary.splice(i,1);
         };
 
-        
         removeDialog.close();
         header.removeChild(removeDialog);
     });
-
-    }
-
-    
-};
+}};
 
 function searchLibrary() {
     let searchDialog = document.createElement("dialog");
