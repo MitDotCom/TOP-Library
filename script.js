@@ -57,118 +57,116 @@ function addBook() {
     }
 
     else {
-        
+        // console.log's for testing
         let cataloguedBooks = catalog.querySelectorAll("div");
-    console.log("clicked 'add book'");
-    console.log("cataloguedBooks: ",cataloguedBooks);
-    console.log("myLibrary: ",myLibrary);
+        console.log("clicked 'add book'");
+        console.log("cataloguedBooks: ",cataloguedBooks);
+        console.log("myLibrary: ",myLibrary);
 
-    let addDialog = document.createElement("dialog");
-    addDialog.setAttribute("id","add-modal");
-    addDialog.setAttribute("method","dialog");
+        let addDialog = document.createElement("dialog");
+        addDialog.setAttribute("id","add-modal");
+        addDialog.setAttribute("method","dialog");
 
-    let closeButton = document.createElement("button");
-    closeButton.textContent = "X";
-    closeButton.classList.add("close");
-    addDialog.appendChild(closeButton);
+        let closeButton = document.createElement("button");
+        closeButton.textContent = "X";
+        closeButton.classList.add("close");
+        addDialog.appendChild(closeButton);
 
-    let modalForm = document.createElement("form");
+        let modalForm = document.createElement("form");
 
-    let modalTitle = document.createElement("input");
-    modalTitle.setAttribute("type","text");
-    modalTitle.setAttribute("id","title");
-    modalTitle.setAttribute("name","title");
-    let modalTitleLabel = document.createElement("label");
-    modalTitleLabel.setAttribute("for","title");
-    modalTitleLabel.textContent = "Title:";
-    modalForm.appendChild(modalTitleLabel);
-    modalForm.appendChild(modalTitle);
+        let modalTitle = document.createElement("input");
+        modalTitle.setAttribute("type","text");
+        modalTitle.setAttribute("id","title");
+        modalTitle.setAttribute("name","title");
+        let modalTitleLabel = document.createElement("label");
+        modalTitleLabel.setAttribute("for","title");
+        modalTitleLabel.textContent = "Title:";
+        modalForm.appendChild(modalTitleLabel);
+        modalForm.appendChild(modalTitle);
 
-    let modalAuthor = document.createElement("input");
-    modalAuthor.setAttribute("type","text");
-    modalAuthor.setAttribute("id","author");
-    modalAuthor.setAttribute("name","author");
-    let modalAuthorLabel = document.createElement("label");
-    modalAuthorLabel.setAttribute("for","author");
-    modalAuthorLabel.textContent = "Author:";
-    modalForm.appendChild(modalAuthorLabel);
-    modalForm.appendChild(modalAuthor);
+        let modalAuthor = document.createElement("input");
+        modalAuthor.setAttribute("type","text");
+        modalAuthor.setAttribute("id","author");
+        modalAuthor.setAttribute("name","author");
+        let modalAuthorLabel = document.createElement("label");
+        modalAuthorLabel.setAttribute("for","author");
+        modalAuthorLabel.textContent = "Author:";
+        modalForm.appendChild(modalAuthorLabel);
+        modalForm.appendChild(modalAuthor);
 
-    let modalPages = document.createElement("input");
-    modalPages.setAttribute("type","text");
-    modalPages.setAttribute("id","pages");
-    modalPages.setAttribute("name","pages");
-    let modalPagesLabel = document.createElement("label");
-    modalPagesLabel.setAttribute("for","pages");
-    modalPagesLabel.textContent = "Pages:";
-    modalForm.appendChild(modalPagesLabel);
-    modalForm.appendChild(modalPages);
+        let modalPages = document.createElement("input");
+        modalPages.setAttribute("type","text");
+        modalPages.setAttribute("id","pages");
+        modalPages.setAttribute("name","pages");
+        let modalPagesLabel = document.createElement("label");
+        modalPagesLabel.setAttribute("for","pages");
+        modalPagesLabel.textContent = "Pages:";
+        modalForm.appendChild(modalPagesLabel);
+        modalForm.appendChild(modalPages);
 
-    let modalRead = document.createElement("input");
-    modalRead.setAttribute("type","text");
-    modalRead.setAttribute("id","read");
-    modalRead.setAttribute("name","read");
-    let modalReadLabel = document.createElement("label");
-    modalReadLabel.setAttribute("for","read");
-    modalReadLabel.textContent = "Read:";
-    modalForm.appendChild(modalReadLabel);
-    modalForm.appendChild(modalRead);
+        let modalRead = document.createElement("input");
+        modalRead.setAttribute("type","text");
+        modalRead.setAttribute("id","read");
+        modalRead.setAttribute("name","read");
+        let modalReadLabel = document.createElement("label");
+        modalReadLabel.setAttribute("for","read");
+        modalReadLabel.textContent = "Read:";
+        modalForm.appendChild(modalReadLabel);
+        modalForm.appendChild(modalRead);
 
-    let modalRating = document.createElement("input");
-    modalRating.setAttribute("type","text");
-    modalRating.setAttribute("id","rating");
-    modalRating.setAttribute("name","rating");
-    let modalRatingLabel = document.createElement("label");
-    modalRatingLabel.setAttribute("for","rating");
-    modalRatingLabel.textContent = "Rating (0-5):";
-    modalForm.appendChild(modalRatingLabel);
-    modalForm.appendChild(modalRating);
+        let modalRating = document.createElement("input");
+        modalRating.setAttribute("type","text");
+        modalRating.setAttribute("id","rating");
+        modalRating.setAttribute("name","rating");
+        let modalRatingLabel = document.createElement("label");
+        modalRatingLabel.setAttribute("for","rating");
+        modalRatingLabel.textContent = "Rating (0-5):";
+        modalForm.appendChild(modalRatingLabel);
+        modalForm.appendChild(modalRating);
 
-    let modalSubmit = document.createElement("button");
-    modalSubmit.setAttribute("type","button");
-    modalSubmit.textContent = "Submit";
-    modalForm.appendChild(modalSubmit);
+        let modalSubmit = document.createElement("button");
+        modalSubmit.setAttribute("type","button");
+        modalSubmit.setAttribute("id","submit");
+        modalSubmit.textContent = "Submit";
+        modalForm.appendChild(modalSubmit);
 
-    addDialog.appendChild(modalForm);
-    document.body.appendChild(addDialog);
+        addDialog.appendChild(modalForm);
+        document.body.appendChild(addDialog);
+        addDialog.showModal();
 
-    addDialog.showModal();
-
-    closeButton.addEventListener('click', () => {
-        addDialog.close();
-        document.body.removeChild(addDialog);
-    });
-
-    modalSubmit.addEventListener("click", () => {
-
+        closeButton.addEventListener('click', () => {
+            addDialog.close();
+            document.body.removeChild(addDialog);
+        })
         
-        let title = modalForm.querySelector("#title").value;
-        let author = modalForm.querySelector("#author").value;
-        let pages = modalForm.querySelector("#pages").value;
-        let read = modalForm.querySelector("#read").value;
-        let rating = modalForm.querySelector("#rating").value;
-        let elementType = "div";
-        let className = "book";
-        let color = makeRandomColor();
+        modalSubmit.addEventListener("click", () => {
+            let title = modalForm.querySelector("#title").value;
+            let author = modalForm.querySelector("#author").value;
+            let pages = modalForm.querySelector("#pages").value;
+            let read = modalForm.querySelector("#read").value;
+            let rating = modalForm.querySelector("#rating").value;
+            let elementType = "div";
+            let className = "book";
+            let color = makeRandomColor();
 
-        let newBook = new Book(
-            title,
-            author,
-            pages,
-            read,
-            rating,
-            elementType,
-            className,
-            color
-        );
+            let newBook = new Book(
+                title,
+                author,
+                pages,
+                read,
+                rating,
+                elementType,
+                className,
+                color
+            );
 
-        myLibrary.push(newBook);
-        showBooks();
-        addDialog.close();
-        document.body.removeChild(addDialog);
-        
-    });
-}};
+            myLibrary.push(newBook);
+            showBooks();
+            addDialog.close();
+            document.body.removeChild(addDialog);
+        })
+    }
+}
 
 function clickBook() {
     //
@@ -176,6 +174,7 @@ function clickBook() {
 
 function removeBook() {
 
+    // console.log's for testing
     let cataloguedBooks = catalog.querySelectorAll("div");
     console.log("clicked 'remove book'");
     console.log("cataloguedBooks: ",cataloguedBooks);
@@ -270,8 +269,7 @@ function searchLibrary() {
 
     let searchHeading = document.createElement("h2");
     searchHeading.textContent = "Search";
-    searchDialog.appendChild(searchHeading);
-    document.body.appendChild(searchDialog);
+    modalForm.appendChild(searchHeading);
 
     let searchBar = document.createElement("input");
     searchBar.setAttribute("type","text");
@@ -280,13 +278,16 @@ function searchLibrary() {
     let searchBarLabel = document.createElement("label");
     searchBarLabel.setAttribute("for","search");
     searchBarLabel.textContent = "Search alphabetically by title";
-    searchDialog.appendChild(searchBar);
+    modalForm.appendChild(searchBar);
+    modalForm.appendChild(searchBarLabel);
 
     let modalSubmit = document.createElement("button");
     modalSubmit.setAttribute("type","submit");
+    modalSubmit.setAttribute("id","submit");
     modalSubmit.textContent = "Submit";
     modalForm.appendChild(modalSubmit);
 
+    searchDialog.appendChild(modalForm);
     searchDialog.showModal();
 
     closeButton.addEventListener('click', () => {
@@ -295,7 +296,7 @@ function searchLibrary() {
     })
 
     modalSubmit.addEventListener("click",() => {
-        // ;
+        
     })
 };
 
