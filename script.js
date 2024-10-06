@@ -325,6 +325,19 @@ function searchLibrary() {
             searchDialog.close();
             document.body.removeChild(searchDialog);
         })
+
+        let refreshButton = document.createElement("button");
+        refreshButton.setAttribute("type","button");
+        refreshButton.setAttribute("id","refresh");
+        refreshButton.textContent = "Refresh";
+        header.appendChild(refreshButton);
+
+        refreshButton.addEventListener("click", () => {
+
+            showBooks();
+            header.removeChild(refreshButton);
+        })
+
     };
 
 addBookBtn.addEventListener("click",addBook);
