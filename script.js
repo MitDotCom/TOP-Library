@@ -33,11 +33,21 @@ function showBooks() {
     for (book of myLibrary) {
 
         let div = document.createElement("div");
-        div.classList.add(book.title);
+
+        if (book.title) {
+            
+
+            let bookTitleWords = book.title.split(" ");
+            div.classList.add(bookTitleWords);
+            }
+        
+
         if (book.author) {
-            book.author.replace(" ",",");
-            div.classList.add(book.author);
-        }
+
+            let bookAuthorWords = book.author.split(" ");
+            div.classList.add(bookAuthorWords);
+            }
+            
         div.classList.add(book.className);
         div.style.backgroundColor = book.color;
 
@@ -301,13 +311,14 @@ function searchLibrary() {
 
         for (book of catalog.childNodes) {
             
+            console.log(book);
             book.classList.value = book.classList.value.toLowerCase();
 
             if (!(book.classList.contains(searchValue))) {
-
-                catalog.removeChild(book);}
                 
-            }
+                catalog.removeChild(book);
+            }}
+
             searchDialog.close();
             document.body.removeChild(searchDialog);
         })
