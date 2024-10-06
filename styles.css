@@ -314,10 +314,13 @@ footer a, footer p {
     height: calc(4vw + 10px);
 }
 
-header #refresh {
-    position: absolute;
-    left: 82vw;
-    top: 4vh;
+header button#refresh {
+    border: 4px solid var(--header-background);
+    border-radius: 0.5rem;
+    background-color: var(--body-background);
+    position: relative;
+    left: 82.5vw;
+    bottom: 15vh;
     width: calc(12vw + 20px);
     height: calc(10vh + 10px);
 }
