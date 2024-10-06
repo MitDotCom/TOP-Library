@@ -305,19 +305,22 @@ function searchLibrary() {
     })
 
     modalSubmit.addEventListener("click", () => {
-        
-        let searchValue = document.getElementById("search").value;
-        searchValue = searchValue.toLowerCase();
 
         for (book of catalog.childNodes) {
-            
-            console.log(book);
-            book.classList.value = book.classList.value.toLowerCase();
 
-            if (!(book.classList.contains(searchValue))) {
+            let searchValue = document.getElementById("search").value;
+            searchValue = searchValue.replace(" ",",");
+            searchValue = searchValue.toLowerCase();
+
+            if (catalog.length < 2) {
+                // Do nothing
+            }
+
+            else if (!(book.classList.value == searchValue)) {
                 
                 catalog.removeChild(book);
-            }}
+            }
+        }
 
             searchDialog.close();
             document.body.removeChild(searchDialog);
