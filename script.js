@@ -7,11 +7,13 @@ const catalog = document.getElementById("catalog");
 
 const myLibrary = [];
 
+// This makes a random color...lol
 function makeRandomColor() {
     let randomColor = Math.floor(Math.random()*16777215).toString(16);
     return "#" + randomColor;
 }
 
+// This is the Class for a book
 function Book(title,author,pages,read,rating,elementType,className,color) {
     this.title = title;
     this.author = author;
@@ -23,7 +25,7 @@ function Book(title,author,pages,read,rating,elementType,className,color) {
     this.color = color;
 };
 
-
+// This function creates a book div in the catalog based on the Book object created
 function showBooks() {
 
     catalog.replaceChildren();
@@ -31,7 +33,12 @@ function showBooks() {
     for (book of myLibrary) {
 
         let div = document.createElement("div");
-        div.classList = book.className;
+        div.classList.add(book.title);
+        if (book.author) {
+            book.author.replace(" ",",");
+            div.classList.add(book.author);
+        }
+        div.classList.add(book.className);
         div.style.backgroundColor = book.color;
 
         let h2 = document.createElement("h2");
@@ -47,7 +54,7 @@ function showBooks() {
     
 };
 
-
+// This function creates a form dialog where the user can input the information for a book. This is then added to a book object.
 function addBook() {
 
     let headerRemoveDialog = header.querySelector("dialog");
@@ -57,11 +64,6 @@ function addBook() {
     }
 
     else {
-        // console.log's for testing
-        let cataloguedBooks = catalog.querySelectorAll("div");
-        console.log("clicked 'add book'");
-        console.log("cataloguedBooks: ",cataloguedBooks);
-        console.log("myLibrary: ",myLibrary);
 
         let addDialog = document.createElement("dialog");
         addDialog.setAttribute("id","add-modal");
@@ -174,12 +176,8 @@ function clickBook() {
 
 function removeBook() {
 
-    // console.log's for testing
     let cataloguedBooks = catalog.querySelectorAll("div");
-    console.log("clicked 'remove book'");
-    console.log("cataloguedBooks: ",cataloguedBooks);
-    console.log("myLibrary: ",myLibrary);
-    console.log("catalogued books length: ",cataloguedBooks.length);
+    console.log(cataloguedBooks);
 
     if (cataloguedBooks.length == 0) {
         // Do nothing
@@ -254,6 +252,7 @@ function removeBook() {
     });
 }};
 
+// This creates a form dialog which takes a string that is checked in the catalog, and returned as the sole div in the catalog.
 function searchLibrary() {
     let searchDialog = document.createElement("dialog");
     searchDialog.setAttribute("id","search-modal");
@@ -277,12 +276,12 @@ function searchLibrary() {
     searchBar.setAttribute("name","search");
     let searchBarLabel = document.createElement("label");
     searchBarLabel.setAttribute("for","search");
-    searchBarLabel.textContent = "Search alphabetically by title";
+    searchBarLabel.textContent = "Search alphabetically";
     modalForm.appendChild(searchBar);
     modalForm.appendChild(searchBarLabel);
 
     let modalSubmit = document.createElement("button");
-    modalSubmit.setAttribute("type","submit");
+    modalSubmit.setAttribute("type","button");
     modalSubmit.setAttribute("id","submit");
     modalSubmit.textContent = "Submit";
     modalForm.appendChild(modalSubmit);
@@ -295,10 +294,24 @@ function searchLibrary() {
         document.body.removeChild(searchDialog);
     })
 
-    modalSubmit.addEventListener("click",() => {
+    modalSubmit.addEventListener("click", () => {
         
-    })
-};
+        let searchValue = document.getElementById("search").value;
+        searchValue = searchValue.toLowerCase();
+
+        for (book of catalog.childNodes) {
+            
+            book.classList.value = book.classList.value.toLowerCase();
+
+            if (!(book.classList.contains(searchValue))) {
+
+                catalog.removeChild(book);}
+                
+            }
+            searchDialog.close();
+            document.body.removeChild(searchDialog);
+        })
+    };
 
 addBookBtn.addEventListener("click",addBook);
 removeBookBtn.addEventListener("click",removeBook);
