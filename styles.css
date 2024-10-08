@@ -165,12 +165,12 @@ header {
     color: black;
     font-weight: bold;
     position: absolute;
-    line-height: 1.5em;
+    line-height: 2.2em;
     content: "Read?";
     height: 4vh;
     width: 3vw;
     left: 0.1vw;
-    bottom: 0.1vh;
+    bottom: 0.25vh;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
