@@ -61,10 +61,12 @@ function showBooks() {
         
         let readItInput = document.createElement("input");
         readItInput.setAttribute("type","checkbox");
+        readItInput.setAttribute("class","input")
         let readItLabel = document.createElement("label");
         readItLabel.setAttribute("class","switch");
         let readItSpan = document.createElement("span");
         readItSpan.setAttribute("class","slider");
+        readItSpan.classList.add("round");
 
         readItLabel.appendChild(readItInput);
         readItLabel.appendChild(readItSpan);
@@ -238,7 +240,7 @@ function removeBook() {
         
         for (let i = 0; i < cataloguedBooks.length; i++) {
 
-            let bookClose = cataloguedBooks[i].querySelector("input");
+            let bookClose = cataloguedBooks[i].querySelector("#select");
             cataloguedBooks[i].removeChild(bookClose);
 
         }
@@ -252,7 +254,7 @@ function removeBook() {
 
         for (let i = 0; i < cataloguedBooks.length; i++) {
 
-            let bookClose = cataloguedBooks[i].querySelector("input");
+            let bookClose = cataloguedBooks[i].querySelector("#select");
             
             if (bookClose.checked == true) {
                 

@@ -23,6 +23,7 @@ body {
 }
 
 /* ---------------------------------------- */
+/*                  HEADER                  */
 
 header {
     display: grid;
@@ -83,6 +84,7 @@ header {
 }
 
 /* ---------------------------------------- */
+/*                  CATALOG                 */
 
 #catalog {
     display: grid;
@@ -131,7 +133,61 @@ header {
     height: 2vw;
 }
 
+#catalog label {
+    position: relative;
+    display: inline-block;
+    grid-area: 6 / 2 / 7 / 3;
+    width: calc(7vw);
+    height: calc(5vh)
+}
+
+#catalog label input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#catalog .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 0.5rem;
+}
+
+#catalog .slider:before {
+    position: absolute;
+    content: "Read?";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 0.5rem;
+}
+
+#catalog input:checked + .slider {
+    background-color: #2196F3;
+}
+
+#catalog input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+#catalog input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
 /* ---------------------------------------- */
+/*                  FOOTER                  */
 
 footer {
     background-color: var(--header-background);
@@ -154,6 +210,7 @@ footer a, footer p {
 }
 
 /* ---------------------------------------- */
+/*          ADD MODAL (DIALOG)              */
 
 #add-modal {
     border: 4px solid var(--header-background);
@@ -213,6 +270,7 @@ footer a, footer p {
 }
 
 /* ---------------------------------------- */
+/*          REMOVE MODAL (DIALOG)           */
 
 #remove-modal {
     position: absolute;
@@ -253,6 +311,7 @@ footer a, footer p {
     grid-column: 2 / 3;
 }
 /* ---------------------------------------- */
+/*          SEARCH MODAL (DIALOG)           */
 
 #search-modal {
     border: 4px solid var(--header-background);
