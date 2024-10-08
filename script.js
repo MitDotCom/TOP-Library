@@ -58,6 +58,17 @@ function showBooks() {
         let h3 = document.createElement("h3");
         h3.textContent = book.author;
         div.appendChild(h3);
+        
+        let readItInput = document.createElement("input");
+        readItInput.setAttribute("type","checkbox");
+        let readItLabel = document.createElement("label");
+        readItLabel.setAttribute("class","switch");
+        let readItSpan = document.createElement("span");
+        readItSpan.setAttribute("class","slider");
+
+        readItLabel.appendChild(readItInput);
+        readItLabel.appendChild(readItSpan);
+        div.appendChild(readItLabel);
 
         catalog.appendChild(div);
     }
