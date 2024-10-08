@@ -48,6 +48,10 @@ function showBooks() {
             div.classList.add(bookAuthorWords);
             }
             
+        if ((book.read == "yes") || (book.read == "y")) {
+            readItSpan.classList.toggle("read");
+            // WORKING HERE
+        }
         div.classList.add(book.className);
         div.style.backgroundColor = book.color;
 
@@ -135,7 +139,7 @@ function addBook() {
         modalRead.setAttribute("name","read");
         let modalReadLabel = document.createElement("label");
         modalReadLabel.setAttribute("for","read");
-        modalReadLabel.textContent = "Read:";
+        modalReadLabel.textContent = "Read it? (y/n):";
         modalForm.appendChild(modalReadLabel);
         modalForm.appendChild(modalRead);
 
