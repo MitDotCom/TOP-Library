@@ -47,11 +47,21 @@ function showBooks() {
             let bookAuthorWords = book.author.split(" ");
             div.classList.add(bookAuthorWords);
             }
-            
+        
+        let readItInput = document.createElement("input");
+        readItInput.setAttribute("type","checkbox");
+        readItInput.setAttribute("class","input")
+        let readItLabel = document.createElement("label");
+        readItLabel.setAttribute("class","switch");
+        let readItSpan = document.createElement("span");
+        readItSpan.setAttribute("class","slider");
+        readItSpan.classList.add("round");
+    
         if ((book.read == "yes") || (book.read == "y")) {
-            readItSpan.classList.toggle("read");
-            // WORKING HERE
+            console.log(readItSpan.checked);
+            readItInput.checked = true;
         }
+
         div.classList.add(book.className);
         div.style.backgroundColor = book.color;
 
@@ -63,15 +73,7 @@ function showBooks() {
         h3.textContent = book.author;
         div.appendChild(h3);
         
-        let readItInput = document.createElement("input");
-        readItInput.setAttribute("type","checkbox");
-        readItInput.setAttribute("class","input")
-        let readItLabel = document.createElement("label");
-        readItLabel.setAttribute("class","switch");
-        let readItSpan = document.createElement("span");
-        readItSpan.setAttribute("class","slider");
-        readItSpan.classList.add("round");
-
+        
         readItLabel.appendChild(readItInput);
         readItLabel.appendChild(readItSpan);
         div.appendChild(readItLabel);
