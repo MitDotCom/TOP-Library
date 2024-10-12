@@ -36,7 +36,6 @@ function showBooks() {
 
         if (book.title) {
             
-
             let bookTitleWords = book.title.split(" ");
             div.classList.add(bookTitleWords);
             }
@@ -48,37 +47,40 @@ function showBooks() {
             div.classList.add(bookAuthorWords);
             }
         
-        let readItInput = document.createElement("input");
-        readItInput.setAttribute("type","checkbox");
-        readItInput.setAttribute("class","input")
-        let readItLabel = document.createElement("label");
-        readItLabel.setAttribute("class","switch");
-        let readItSpan = document.createElement("span");
-        readItSpan.setAttribute("class","slider");
-        readItSpan.classList.add("round");
-    
-        if ((book.read == "yes") || (book.read == "y")) {
-            console.log(readItSpan.checked);
-            readItInput.checked = true;
+        else {
+
+            let readItInput = document.createElement("input");
+            readItInput.setAttribute("type","checkbox");
+            readItInput.setAttribute("class","input")
+            let readItLabel = document.createElement("label");
+            readItLabel.setAttribute("class","switch");
+            let readItSpan = document.createElement("span");
+            readItSpan.setAttribute("class","slider");
+            readItSpan.classList.add("round");
+        
+            if ((book.read == "yes") || (book.read == "y")) {
+                readItInput.checked = true;
+            }
+
+            div.classList.add(book.className);
+            div.style.backgroundColor = book.color;
+
+            let h2 = document.createElement("h2");
+            h2.textContent = book.title;
+            div.appendChild(h2);
+
+            let h3 = document.createElement("h3");
+            h3.textContent = book.author;
+            div.appendChild(h3);
+            
+            
+            readItLabel.appendChild(readItInput);
+            readItLabel.appendChild(readItSpan);
+            div.appendChild(readItLabel);
+
+            catalog.appendChild(div);
         }
-
-        div.classList.add(book.className);
-        div.style.backgroundColor = book.color;
-
-        let h2 = document.createElement("h2");
-        h2.textContent = book.title;
-        div.appendChild(h2);
-
-        let h3 = document.createElement("h3");
-        h3.textContent = book.author;
-        div.appendChild(h3);
         
-        
-        readItLabel.appendChild(readItInput);
-        readItLabel.appendChild(readItSpan);
-        div.appendChild(readItLabel);
-
-        catalog.appendChild(div);
     }
     
 };
@@ -171,6 +173,7 @@ function addBook() {
         })
         
         modalSubmit.addEventListener("click", () => {
+
             let title = modalForm.querySelector("#title").value;
             let author = modalForm.querySelector("#author").value;
             let pages = modalForm.querySelector("#pages").value;
@@ -180,21 +183,38 @@ function addBook() {
             let className = "book";
             let color = makeRandomColor();
 
-            let newBook = new Book(
-                title,
-                author,
-                pages,
-                read,
-                rating,
-                elementType,
-                className,
-                color
-            );
+            if ((!(title)) || (!(author))) {
+            
+                if (addDialog.querySelector("h1") == null) {
+                    console.log("no h1")
+                    let noTitleAuthor = document.createElement("h1");
+                    noTitleAuthor.classList.add("warning");
+                    noTitleAuthor.textContent = "Title or Author required"
+                    let addDialog = document.getElementById("add-modal")
+                    addDialog.appendChild(noTitleAuthor);
+                } 
+                
+            }
 
-            myLibrary.push(newBook);
-            showBooks();
-            addDialog.close();
-            document.body.removeChild(addDialog);
+            else {
+                
+                let newBook = new Book(
+                    title,
+                    author,
+                    pages,
+                    read,
+                    rating,
+                    elementType,
+                    className,
+                    color
+                );
+    
+                myLibrary.push(newBook);
+                showBooks();
+                addDialog.close();
+                document.body.removeChild(addDialog);
+                console.log(myLibrary);
+            }            
         })
     }
 }
@@ -206,7 +226,6 @@ function clickBook() {
 function removeBook() {
 
     let cataloguedBooks = catalog.querySelectorAll("div");
-    console.log(cataloguedBooks);
 
     if (cataloguedBooks.length == 0) {
         // Do nothing

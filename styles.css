@@ -103,7 +103,7 @@ header {
     color: var(--font-color);
     background-color: var(--box-background);
     border: 5px solid var(--box-background);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 #catalog div h2 {
@@ -273,6 +273,11 @@ footer a, footer p {
     grid-column: span 2;
 }
 
+#add-modal .warning {
+    grid-area: 1 / 1 / 2 / 2;
+    font-size: 1.5rem;
+    text-align: center;
+}
 /* ---------------------------------------- */
 /*          REMOVE MODAL (DIALOG)           */
 
