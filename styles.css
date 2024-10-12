@@ -379,11 +379,11 @@ footer a, footer p {
 
 header button#refresh {
     border: 4px solid var(--header-background);
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     background-color: var(--body-background);
     position: relative;
-    left: 82.5vw;
+    left: 81.5vw;
     bottom: 15vh;
-    width: calc(12vw + 20px);
-    height: calc(10vh + 10px);
+    width: 15vw;
+    height: 12vh;
 }
