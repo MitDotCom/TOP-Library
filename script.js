@@ -51,6 +51,7 @@ function showBooks() {
         readItInput.setAttribute("type","checkbox");
         readItInput.setAttribute("class","input")
         let readItLabel = document.createElement("label");
+        readItLabel.setAttribute("class","read");
         readItLabel.setAttribute("class","switch");
         let readItSpan = document.createElement("span");
         readItSpan.setAttribute("class","slider");
@@ -65,10 +66,12 @@ function showBooks() {
 
         let h2 = document.createElement("h2");
         h2.textContent = book.title;
+        h2.setAttribute("class","title");
         div.appendChild(h2);
 
         let h3 = document.createElement("h3");
         h3.textContent = book.author;
+        h3.setAttribute("class","author");
         div.appendChild(h3);
         
         
@@ -176,7 +179,7 @@ function addBook() {
                 console.log("no h1")
                 let noTitleAuthor = document.createElement("h1");
                 noTitleAuthor.classList.add("warning");
-                noTitleAuthor.textContent = "Title or Author required"
+                noTitleAuthor.textContent = "Title and Author required"
                 let addDialog = document.getElementById("add-modal")
                 addDialog.appendChild(noTitleAuthor);
             } 
@@ -185,7 +188,6 @@ function addBook() {
 
         else {
             
-
             let newBook = new Book(
                 title,
                 author,
@@ -208,8 +210,65 @@ function addBook() {
     })
 }
 
-function clickBook() {
-    //
+// This function "flips" the book div over to see the back which has the page count and rating
+function flipBook() {
+    
+    let catalog = document.getElementById("catalog");
+    let catalogNodes = catalog.childNodes;
+
+    let count = 0;
+
+    catalogNodes.forEach((book) => {
+
+        let bookH2 = book.querySelector("h2");
+        let bookH3 = book.querySelector("h3");
+
+        book.addEventListener("click", () => {
+
+            let title = myLibrary.at(count).title;
+            let author = myLibrary.at(count).author;
+            let pages = myLibrary.at(count).pages;
+            let rating = myLibrary.at(count).rating;
+
+            if (!(bookH2 == null)) {
+                book.removeChild(bookH2);
+            }
+            
+            if (!(bookH3 == null)) {
+                book.removeChild(bookH3);
+            }
+
+            if (bookH2.classList.contains("title")) {
+                let pagesH2 = document.createElement("h2");
+                pagesH2.classList.add("pages");
+                pagesH2.textContent = pages + " pages";
+                book.appendChild(pagesH2);
+            }
+
+            else if (bookH2.classList.contains("pages")) {
+                let titleH2 = document.createElement("h2");
+                titleH2.classList.add("title");
+                titleH2.textContent = title;
+                book.appendChild(titleH2);
+            }
+            
+            if (bookH3.classList.contains("author")) {
+                let ratingH3 = document.createElement("h3");
+                ratingH3.classList.add("rating");
+                ratingH3.textContent = "Rating: " + rating + " out of 5";
+                book.appendChild(ratingH3);
+            }
+            
+            else if (bookH3.classList.contains("rating")) {
+                let authorH3 = document.createElement("h3");
+                authorH3.classList.add("author");
+                authorH3.textContent = author;
+                book.appendChild(authorH3);
+            }
+
+            count++;
+        })
+    })
 }
 
 function removeBook() {
@@ -291,6 +350,7 @@ function removeBook() {
 
 // This creates a form dialog which takes a string that is checked in the catalog, and returned as the sole div in the catalog.
 function searchLibrary() {
+
     let searchDialog = document.createElement("dialog");
     searchDialog.setAttribute("id","search-modal");
     searchDialog.setAttribute("method","dialog");
@@ -370,3 +430,4 @@ function searchLibrary() {
 addBookBtn.addEventListener("click",addBook);
 removeBookBtn.addEventListener("click",removeBook);
 searchBtn.addEventListener("click",searchLibrary);
+catalog.addEventListener("click",flipBook);
